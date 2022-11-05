@@ -10,9 +10,9 @@ class User(models.Model):
     ctime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.userid
 
     class Meta:
         ordering = ['ctime']
-        verbose_name = '用户'
-        verbose_name_plural = '用户'
+        verbose_name = '用户id'
+        verbose_name_plural = '用户id'
