@@ -36,4 +36,5 @@ userid = login_form.cleaned_data.get('userid')
 password = login_form.cleaned_data.get('password')
 ```
 #### 注册界面
-![image](https://user-images.githubusercontent.com/91482240/200122022-bf6f82fb-79a1-418a-a669-62a0b07578d2.png)
+![image](https://user-images.githubusercontent.com/91482240/200122074-defc498b-319d-469e-9aa8-3d73d7eeece0.png)
+
