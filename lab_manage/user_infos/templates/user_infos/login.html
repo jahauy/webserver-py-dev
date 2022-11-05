@@ -8,13 +8,18 @@
 <div style="margin: 10% 30%;color: #5e5e5f;background: #D4DFE6">
     <h1>登录系统</h1>
     <form action="/login/" method="post">
+
+        <div>
+            {% if login_form.captcha.errors %}
+                <div>{{ login_form.captcha.errors }}</div>
+            {% elif message %}
+                <div>{{ message }}</div>
+            {% endif %}
+        </div>
+
         {% csrf_token %}
-        {% if login_form.captcha.errors %}
-            <div>{{ login_form.captcha.errors }}</div>
-        {% elif message %}
-            <div>{{ message }}</div>
-        {% endif %}
         <h3>欢迎登录</h3>
+
         <div>
             {{ login_form.userid.label_tag }}<br>
             {{ login_form.userid }}

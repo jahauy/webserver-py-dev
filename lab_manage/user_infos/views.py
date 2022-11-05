@@ -23,21 +23,33 @@ from .forms import *
 def login(request):
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
-        message = 'Please check input! '
+        message = ''
+        print(login_form.errors)
 
         if login_form.is_valid():
             userid = login_form.cleaned_data.get('userid')
             password = login_form.cleaned_data.get('password')
+
             try:
                 user = User.objects.get(userid=userid)
-                if user.password == password:
-                    return redirect('')
-                else:
-                    message = 'Password invalid...'
             except:
                 message = 'User not found...'
-    else:
-        login_form = UserLoginForm()
+                return render(request, 'user_infos/login.html', locals())
+
+            if user.password == password:
+                print('redirect')
+                return redirect(reverse('user_infos:index'))
+            else:
+                message = 'Password invalid...'
+                return render(request, 'user_infos/login.html', locals())
+
+        else:
+            print('missing')
+            return render(request, 'user_infos/login.html', locals())
+
+    login_form = UserLoginForm()
+    message = 'Please check input! '
+    print('last')
     return render(request, 'user_infos/login.html', locals())
 
 
@@ -47,8 +59,35 @@ def index(request):
 
 
 def register(request):
-    pass
-    return render(request, 'user_infos/register.html')
+    if request.method == 'POST':
+        register_form = UserRegisterForm(request.POST)
+        message = ''
+        if register_form.is_valid():
+            userid = register_form.cleaned_data.get('userid')
+            password = register_form.cleaned_data.get('password')
+            password_confirm = register_form.cleaned_data.get('password_confirm')
+
+            if password_confirm != password:
+                message = 'Please input your password again! '
+                return render(request, 'user_infos/register.html', locals())
+            else:
+                same_id = User.objects.filter(userid=userid)
+                if same_id:
+                    message = 'Userid already exists! '
+                    return render(request, 'user_infos/register.html', locals())
+                else:
+                    user = User()
+                    user.userid = userid
+                    user.password = password
+                    user.name = register_form.cleaned_data.get('name')
+                    user.email = register_form.cleaned_data.get('email')
+                    user.save()
+                    return redirect('/login/')
+        else:
+            return render(request, 'user_infos/register.html', locals())
+    register_form = UserRegisterForm()
+    message = 'Please check input! '
+    return render(request, 'user_infos/register.html', locals())
 #
 #
 # def logout(request):
