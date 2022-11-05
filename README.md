@@ -3,7 +3,7 @@
 ### 1. lab_manage
 实验室系统管理程序
 #### 登录界面
-![image](https://user-images.githubusercontent.com/91482240/200118512-5890e233-742b-4d10-bf3a-d882bf29c511.png)
+![image](https://user-images.githubusercontent.com/91482240/200122042-dc03867b-eac9-49db-bc53-a41981a0edbb.png)
 
 ##### 最初的写法
 如果用原始的`html`写界面，可以参考：
@@ -35,3 +35,5 @@ login_form = UserLoginForm(request.POST)
 userid = login_form.cleaned_data.get('userid')
 password = login_form.cleaned_data.get('password')
 ```
+#### 注册界面
+![image](https://user-images.githubusercontent.com/91482240/200122022-bf6f82fb-79a1-418a-a669-62a0b07578d2.png)
