@@ -7,11 +7,11 @@
 如果用原始的`html`写界面，可以参考：
 ```html
 <div>
-            <label for="id_userid">用户名：</label><br>
-            <input type="text" id="id_userid" name="userid" placeholder="请输入用户名" autofocus required/>
-        </div>
-        <div>
-            <label for="id_password">密码：</label><br>
-            <input type="password" id="id_password" name="password" placeholder="密码不低于6位" required>
-        </div>
+<label for="id_userid">用户名：</label><br>
+<input type="text" id="id_userid" name="userid" placeholder="请输入用户名" autofocus required/>
+</div>
+<div>
+<label for="id_password">密码：</label><br>
+<input type="password" id="id_password" name="password" placeholder="密码不低于6位" required>
+</div>
 ```
