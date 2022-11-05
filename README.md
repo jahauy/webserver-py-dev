@@ -3,7 +3,7 @@
 ### 1. lab_manage
 实验室系统管理程序
 #### 登录界面
-![image](https://user-images.githubusercontent.com/91482240/200115257-048f84c6-56d5-4901-ae2a-ddfe38dfb3e8.png)
+![image](https://user-images.githubusercontent.com/91482240/200118512-5890e233-742b-4d10-bf3a-d882bf29c511.png)
 
 ##### 最初的写法
 如果用原始的`html`写界面，可以参考：
@@ -23,3 +23,15 @@ userid = request.POST.get('userid')
 password = request.POST.get('password')
 ```
 ##### 使用表单的写法
+```html
+<div>
+{{ login_form.as_p }}
+</div>
+```
+
+```python
+login_form = UserLoginForm(request.POST)
+...
+userid = login_form.cleaned_data.get('userid')
+password = login_form.cleaned_data.get('password')
+```
