@@ -15,3 +15,8 @@
 <input type="password" id="id_password" name="password" placeholder="密码不低于6位" required>
 </div>
 ```
+在视图里获取表单：
+```python
+userid = request.POST.get('userid')
+password = request.POST.get('password')
+```
