@@ -31,7 +31,7 @@ def login(request):
             try:
                 user = User.objects.get(userid=userid)
                 if user.password == password:
-                    return redirect(reverse('user_infos::index'))
+                    return redirect('')
                 else:
                     message = 'Password invalid...'
             except:

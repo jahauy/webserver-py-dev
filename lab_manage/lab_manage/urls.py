@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('captcha/', include('captcha.urls')),
     path("admin/", admin.site.urls),
     path('', include('user_infos.urls'), name='user_infos')
 ]

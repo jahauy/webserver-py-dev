@@ -9,12 +9,25 @@
     <h1>登录系统</h1>
     <form action="/login/" method="post">
         {% csrf_token %}
-        {% if message %}
-            <div class="alert alert-warning">{{ message }}</div>
+        {% if login_form.captcha.errors %}
+            <div>{{ login_form.captcha.errors }}</div>
+        {% elif message %}
+            <div>{{ message }}</div>
         {% endif %}
         <h3>欢迎登录</h3>
         <div>
-          {{ login_form.as_p }}
+            {{ login_form.userid.label_tag }}<br>
+            {{ login_form.userid }}
+        </div>
+
+        <div>
+            {{ login_form.password.label_tag }}<br>
+            {{ login_form.password }}
+        </div>
+
+        <div>
+            {{ login_form.captcha.label_tag }}<br>
+            {{ login_form.captcha }}
         </div>
         <div>
             <button type="submit">登录</button>
