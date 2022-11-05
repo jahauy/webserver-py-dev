@@ -14,15 +14,9 @@
         {% endif %}
         <h3>欢迎登录</h3>
         <div>
-            <label for="id_userid">用户名：</label><br>
-            <input type="text" id="id_userid" name="userid" placeholder="请输入用户名" autofocus required/>
+          {{ login_form.as_p }}
         </div>
         <div>
-            <label for="id_password">密码：</label><br>
-            <input type="password" id="id_password" name="password" placeholder="密码不低于6位" required>
-        </div>
-        <div>
-            <br>
             <button type="submit">登录</button>
         </div>
 

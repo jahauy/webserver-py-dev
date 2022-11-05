@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from .models import User
+from .forms import *
 
 # Create your views here.
 '''
@@ -12,20 +13,21 @@ from .models import User
 
 
 # 输入参数的合法性校验，TODO
-def _review_inputs(userid, password):
-    print(f'[INFO] userid={userid}')
-    if userid is None or password is None:
-        return False
-    return True
+# def _review_inputs(userid, password):
+#     print(f'[INFO] userid={userid}')
+#     if userid is None or password is None:
+#         return False
+#     return True
 
 
 def login(request):
     if request.method == 'POST':
-        userid = request.POST.get('userid')
-        password = request.POST.get('password')
+        login_form = UserLoginForm(request.POST)
         message = 'Please check input! '
 
-        if _review_inputs(userid.strip(), password):
+        if login_form.is_valid():
+            userid = login_form.cleaned_data.get('userid')
+            password = login_form.cleaned_data.get('password')
             try:
                 user = User.objects.get(userid=userid)
                 if user.password == password:
@@ -34,9 +36,9 @@ def login(request):
                     message = 'Password invalid...'
             except:
                 message = 'User not found...'
-
-        return render(request, 'user_infos/login.html', {'message': message, })
-    return render(request, 'user_infos/login.html')
+    else:
+        login_form = UserLoginForm()
+    return render(request, 'user_infos/login.html', locals())
 
 
 def index(request):
