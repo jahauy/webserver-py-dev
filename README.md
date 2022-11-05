@@ -23,3 +23,15 @@ userid = request.POST.get('userid')
 password = request.POST.get('password')
 ```
 ##### 使用表单的写法
+```html
+<div>
+{{ login_form.as_p }}
+</div>
+```
+
+```python
+login_form = UserLoginForm(request.POST)
+...
+userid = login_form.cleaned_data.get('userid')
+password = login_form.cleaned_data.get('password')
+```
