@@ -5,9 +5,11 @@
     <title>信息显示</title>
 </head>
 <body>
-<h1>{{ request.session.userid }}，欢迎回来！</h1>
-<p>
-    <a href="/logout/">登出系统</a>
-</p>
+<div style="margin: 10% 30%;color: #5e5e5f;background: #D4DFE6">
+    <h3>{{ request.session.userid }}，欢迎回来！</h3>
+    <p>
+        <a href="/logout/">登出系统</a>
+    </p>
+</div>
 </body>
 </html>
