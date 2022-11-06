@@ -21,6 +21,9 @@ from .forms import *
 
 
 def login(request):
+    if request.session.get('is_login', None):
+        return redirect(reverse('user_infos:index'))
+
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
         message = ''
@@ -37,7 +40,9 @@ def login(request):
                 return render(request, 'user_infos/login.html', locals())
 
             if user.password == password:
-                print('redirect')
+                request.session['is_login'] = True
+                request.session['userid'] = userid
+                request.session['password'] = password
                 return redirect(reverse('user_infos:index'))
             else:
                 message = 'Password invalid...'
@@ -49,12 +54,12 @@ def login(request):
 
     login_form = UserLoginForm()
     message = 'Please check input! '
-    print('last')
     return render(request, 'user_infos/login.html', locals())
 
 
 def index(request):
-    pass
+    if not request.session.get('is_login', None):
+        return redirect('/login/')
     return render(request, 'user_infos/index.html')
 
 
@@ -88,8 +93,10 @@ def register(request):
     register_form = UserRegisterForm()
     message = 'Please check input! '
     return render(request, 'user_infos/register.html', locals())
-#
-#
-# def logout(request):
-#     pass
-#     return redirect('/login/')
+
+
+def logout(request):
+    if not request.session.get('is_login', None):
+        return redirect('/login/')
+    request.session.flush() # 也可以用python内置的del方法
+    return redirect('/login/')

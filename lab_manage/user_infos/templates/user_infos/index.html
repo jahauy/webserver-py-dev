@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>信息</title>
+    <title>信息显示</title>
 </head>
 <body>
-<h1>信息</h1>
+<h1>{{ request.session.userid }}，欢迎回来！</h1>
+<p>
+    <a href="/logout/">登出系统</a>
+</p>
 </body>
 </html>
